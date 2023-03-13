@@ -18,6 +18,10 @@ class Program
             IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://www.rpachallenge.com/");
 
+            // Clica no botão Start
+            IWebElement botaoStart = driver.FindElement(By.CssSelector("button"));
+            botaoStart.Click();
+
             // Itera sobre as linhas da planilha
             for (int row = 2; row <= planilha.LastRowUsed().RowNumber(); row++)
             {
@@ -43,14 +47,16 @@ class Program
                 IWebElement campoTelefone = driver.FindElement(By.CssSelector("input[ng-reflect-name= 'labelPhone']"));
                 campoTelefone.SendKeys(planilha.Cell(row, 7).GetString());
 
+         
+
                 // Clica no botão "Enviar"
-                /*IWebElement botaoEnviar = driver.FindElement(By.CssSelector("input[type='submit']"));
-                botaoEnviar.Click();*/
+                IWebElement botaoEnviar = driver.FindElement(By.CssSelector("input[type='submit']"));
+                botaoEnviar.Click();
 
             }
 
-            // Fecha o navegador
-            driver.Quit();
+          
+          
         }
     }
 }
